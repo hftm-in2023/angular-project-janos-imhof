@@ -1,5 +1,7 @@
 # AngularProjectJanosImhof
 
+Azure URL: https://green-plant-0048f8f03.6.azurestaticapps.net/
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.12.
 
 ## Development server
