@@ -1,14 +1,52 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
-import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatSlideToggle],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatCardModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatListModule,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'angular-project-janos-imhof';
+  selectedAnimal: string | null = null;
+
+  animals = [
+    { name: 'Cat', type: 'mammal' },
+    { name: 'Parrot', type: 'bird' },
+    { name: 'Frog', type: 'amphibian' },
+    { name: 'Shark', type: 'fish' },
+  ];
+
+  clearSelection() {
+    this.selectedAnimal = null;
+  }
+
+  getAnimalColor(type: string): string {
+    switch (type) {
+      case 'mammal':
+        return 'brown';
+      case 'bird':
+        return 'green';
+      case 'amphibian':
+        return 'purple';
+      case 'fish':
+        return 'blue';
+      default:
+        return 'black';
+    }
+  }
 }
