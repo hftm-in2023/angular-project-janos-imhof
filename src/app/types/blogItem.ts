@@ -7,4 +7,6 @@ export interface BlogItem {
   comments: number;
   contentPreview: string;
   headerImageUrl: string;
+  likedByMe: boolean;
+  likes: number;
 }

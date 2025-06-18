@@ -11,4 +11,14 @@
     max-width: 200px;
     max-height: 200px;
   }
+
+  .title-container {
+    overflow: hidden;
+
+    .blog-title {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
 }
