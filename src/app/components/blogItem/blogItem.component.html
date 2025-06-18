@@ -1,14 +1,17 @@
 <mat-card class="blog-item m-10" appearance="outlined">
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image">
+    <div mat-card-avatar>
       <img
         mat-card-image
+        class="author-image"
         src="https://www.amsterdam.net/en/wp-content/uploads/sites/136/rotterdam-hd.jpg"
         alt="{{ blogItem.title }}"
       />
     </div>
     <mat-card-title>{{ blogItem.author }}</mat-card-title>
-    <mat-card-subtitle>{{ blogItem.createdAt }}</mat-card-subtitle>
+    <mat-card-subtitle>{{
+      formatDate(blogItem.createdAt, "dd.MM.yyyy HH:mm", "de-CH")
+    }}</mat-card-subtitle>
   </mat-card-header>
   <img
     mat-card-image

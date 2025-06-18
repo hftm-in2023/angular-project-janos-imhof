@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeDeCh from '@angular/common/locales/de-CH';
 
 //material
 import { MatCardModule } from '@angular/material/card';
@@ -9,6 +11,8 @@ import { BlogItemComponent } from './components/blogItem/blogItem.component';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+
+registerLocaleData(localeDeCh, 'de-CH');
 
 @Component({
   selector: 'app-root',
