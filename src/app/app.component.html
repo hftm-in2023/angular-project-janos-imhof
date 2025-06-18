@@ -23,8 +23,13 @@
     <mat-icon>share</mat-icon>
   </button>
 </mat-toolbar>
-
-<mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+<div
+  class="{{
+    isLoading ? 'd-flex' : 'd-none'
+  }} justify-content-center align-items-center m-20"
+>
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
 <div class="d-flex align-items-center justify-content-center flex-wrap">
   @for (blogItem of blogItems; track blogItem.author) {
     <app-blog-item [blogItem]="blogItem"></app-blog-item>

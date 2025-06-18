@@ -10,8 +10,18 @@ body {
   color: var(--mat-sys-on-surface);
 }
 
-.d-flex {
-  display: flex;
+.d {
+  &-flex {
+    display: flex;
+  }
+
+  &-block {
+    display: block;
+  }
+
+  &-none {
+    display: none;
+  }
 }
 
 .align-items-center {

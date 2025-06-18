@@ -16,11 +16,14 @@
     alt="{{ blogItem.title }}"
   />
   <mat-card-content>
-    <h3>{{ blogItem.title }}</h3>
+    <div class="d-flex">
+      <h3>{{ blogItem.title }}</h3>
+      <span class="flex-fill"></span>
+      <mat-card-actions>
+        <button matButton>LIKE</button>
+        <button matButton>SHARE</button>
+      </mat-card-actions>
+    </div>
     <p>{{ blogItem.contentPreview }}</p>
   </mat-card-content>
-  <mat-card-actions>
-    <button matButton>LIKE</button>
-    <button matButton>SHARE</button>
-  </mat-card-actions>
 </mat-card>

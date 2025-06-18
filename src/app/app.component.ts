@@ -28,11 +28,13 @@ export class AppComponent {
   URL = '/api/entries';
   queryResult = [];
   blogItems: BlogItem[] = [];
+  isLoading = true;
 
   constructor() {
     fetch(this.URL)
       .then((res) =>
         res.json().then((res) => {
+          this.isLoading = false;
           console.log(res);
           this.queryResult = res;
           this.blogItems = res.data as BlogItem[];
