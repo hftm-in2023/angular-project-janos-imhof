@@ -42,6 +42,10 @@ export class AppComponent {
           console.log(res);
           this.queryResult = res;
           this.blogItems = res.data as BlogItem[];
+          this.blogItems.map((item: BlogItem) => {
+            item.headerImageUrl = `https://picsum.photos/200/100?random=${Math.random()}`;
+            item.authorAvatar = `https://picsum.photos/200?random=${Math.random()}`;
+          });
           console.log(this.blogItems);
         }),
       )

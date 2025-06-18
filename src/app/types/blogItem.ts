@@ -4,6 +4,7 @@ export interface BlogItem {
   createdAt: Date;
   updatedAt: Date;
   author: string;
+  authorAvatar: string;
   comments: number;
   contentPreview: string;
   headerImageUrl: string;

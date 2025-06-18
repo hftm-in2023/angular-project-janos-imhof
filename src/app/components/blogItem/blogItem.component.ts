@@ -17,5 +17,4 @@ import { MatIcon } from '@angular/material/icon';
 export class BlogItemComponent {
   @Input() blogItem!: BlogItem;
   protected readonly formatDate = formatDate;
-  protected readonly Math = Math;
 }

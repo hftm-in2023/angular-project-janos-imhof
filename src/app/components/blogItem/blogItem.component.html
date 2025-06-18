@@ -4,7 +4,7 @@
       <img
         mat-card-image
         class="author-image"
-        src="https://picsum.photos/200?random={{ Math.random() }}"
+        src="{{ blogItem.authorAvatar }}"
         alt="{{ blogItem.title }}"
       />
     </div>
@@ -15,7 +15,7 @@
   </mat-card-header>
   <img
     mat-card-image
-    src="https://picsum.photos/200/100?random={{ Math.random() }}"
+    src="{{ blogItem.headerImageUrl }}"
     alt="{{ blogItem.title }}"
   />
   <mat-card-content>
