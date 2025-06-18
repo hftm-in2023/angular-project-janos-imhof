@@ -4,11 +4,12 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 
 import { BlogItem } from './types/blogItem';
+import { BlogItemComponent } from './components/blogItem/blogItem.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [MatCardModule],
+  imports: [MatCardModule, BlogItemComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })

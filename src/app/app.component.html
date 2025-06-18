@@ -1,1 +1,5 @@
 <h2 class="mat-headline-2">Blog Items</h2>
+
+@for (blogItem of blogItems; track blogItem.author) {
+  <app-blog-item [blogItem]="blogItem"></app-blog-item>
+}
