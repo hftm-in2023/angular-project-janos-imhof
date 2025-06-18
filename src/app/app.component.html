@@ -1,62 +1,22 @@
-<mat-card>
-  <h2 class="mat-headline-2">Animal Picker</h2>
-
-  <mat-form-field appearance="fill" style="width: 100%">
-    <mat-label>Select an animal</mat-label>
-    <mat-select [(ngModel)]="selectedAnimal">
-      @for (animal of animals; track animal.name) {
-        <mat-option [value]="animal.name">{{ animal.name }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
-
-  <button
-    mat-button
-    color="warn"
-    (click)="clearSelection()"
-    [disabled]="!selectedAnimal"
-  >
-    Clear Selection
+<mat-toolbar class="d-flex">
+  <button matIconButton class="example-icon" aria-label="Menu">
+    <mat-icon>menu</mat-icon>
   </button>
-
-  @if (selectedAnimal; as animalName) {
-    <mat-card style="margin-top: 20px">
-      <h3>You selected: {{ animalName }}</h3>
-
-      @for (animal of animals; track animal.name) {
-        @if (animal.name === animalName) {
-          @switch (animal.type) {
-            @case ("mammal") {
-              <p>Type: Mammal</p>
-            }
-            @case ("bird") {
-              <p>Type: Bird</p>
-            }
-            @case ("amphibian") {
-              <p>Type: Amphibian</p>
-            }
-            @case ("fish") {
-              <p>Type: Fish</p>
-            }
-            @default {
-              <p>Type: Unknown</p>
-            }
-          }
-
-          <p [ngStyle]="{ color: getAnimalColor(animal.type) }">
-            This is a {{ animal.type }}.
-          </p>
-        }
-      }
-    </mat-card>
+  <span>HFTM Blog</span>
+  <span class="flex-fill"></span>
+  <button matIconButton class="example-icon" aria-label="Share Blog">
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
+<div
+  class="{{
+    isLoading ? 'd-flex' : 'd-none'
+  }} justify-content-center align-items-center m-20"
+>
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+<div class="d-flex align-items-center justify-content-center flex-wrap">
+  @for (blogItem of blogItems; track blogItem.id) {
+    <app-blog-item [blogItem]="blogItem"></app-blog-item>
   }
-
-  <h4 style="margin-top: 30px">Available Animals:</h4>
-  <mat-list>
-    @for (animal of animals; track animal.name) {
-      <mat-list-item [ngClass]="{ selected: animal.name === selectedAnimal }">
-        {{ animal.name }}
-      </mat-list-item>
-    }
-  </mat-list>
-</mat-card>
+</div>
