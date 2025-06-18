@@ -1,32 +1,32 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 
+//material
 import { MatCardModule } from '@angular/material/card';
-import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
+
+import { BlogItem } from './types/blogItem';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatCardModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatListModule,
-  ],
+  imports: [MatCardModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   URL = '/api/entries';
+  queryResult = [];
+  blogItems: BlogItem[] = [];
 
   constructor() {
     fetch(this.URL)
-      .then((res) => res.json().then((res) => console.log(res)))
+      .then((res) =>
+        res.json().then((res) => {
+          console.log(res);
+          this.queryResult = res;
+          this.blogItems = res.data as BlogItem[];
+          console.log(this.blogItems);
+        }),
+      )
       .catch((err) => console.error(err));
   }
 }
