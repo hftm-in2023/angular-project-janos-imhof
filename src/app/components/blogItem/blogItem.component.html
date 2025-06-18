@@ -1,10 +1,10 @@
 <mat-card class="blog-item m-10" appearance="outlined">
-  <mat-card-header>
+  <mat-card-header class="mb-10">
     <div mat-card-avatar>
       <img
         mat-card-image
         class="author-image"
-        src="https://www.amsterdam.net/en/wp-content/uploads/sites/136/rotterdam-hd.jpg"
+        src="https://picsum.photos/200?random={{ Math.random() }}"
         alt="{{ blogItem.title }}"
       />
     </div>
@@ -15,7 +15,7 @@
   </mat-card-header>
   <img
     mat-card-image
-    src="https://www.amsterdam.net/en/wp-content/uploads/sites/136/rotterdam-hd.jpg"
+    src="https://picsum.photos/200/100?random={{ Math.random() }}"
     alt="{{ blogItem.title }}"
   />
   <mat-card-content>
