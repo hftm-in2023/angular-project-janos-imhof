@@ -1,5 +1,30 @@
-<h2 class="mat-headline-2">Blog Items</h2>
+<mat-toolbar class="d-flex">
+  <button
+    matIconButton
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>HFTM Blog</span>
+  <span class="flex-fill"></span>
+  <button
+    matIconButton
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon>favorite</mat-icon>
+  </button>
+  <button
+    matIconButton
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>share</mat-icon>
+  </button>
+</mat-toolbar>
 
+<mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 <div class="d-flex align-items-center justify-content-center flex-wrap">
   @for (blogItem of blogItems; track blogItem.author) {
     <app-blog-item [blogItem]="blogItem"></app-blog-item>
