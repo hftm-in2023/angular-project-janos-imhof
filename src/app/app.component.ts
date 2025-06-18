@@ -22,31 +22,11 @@ import { MatListModule } from '@angular/material/list';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  selectedAnimal: string | null = null;
+  URL = '/api/entries';
 
-  animals = [
-    { name: 'Cat', type: 'mammal' },
-    { name: 'Parrot', type: 'bird' },
-    { name: 'Frog', type: 'amphibian' },
-    { name: 'Shark', type: 'fish' },
-  ];
-
-  clearSelection() {
-    this.selectedAnimal = null;
-  }
-
-  getAnimalColor(type: string): string {
-    switch (type) {
-      case 'mammal':
-        return 'brown';
-      case 'bird':
-        return 'green';
-      case 'amphibian':
-        return 'purple';
-      case 'fish':
-        return 'blue';
-      default:
-        return 'black';
-    }
+  constructor() {
+    fetch(this.URL)
+      .then((res) => res.json().then((res) => console.log(res)))
+      .catch((err) => console.error(err));
   }
 }
