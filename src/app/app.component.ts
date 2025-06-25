@@ -1,52 +1,54 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { registerLocaleData } from '@angular/common';
+import localeDeCh from '@angular/common/locales/de-CH';
 
+//material
 import { MatCardModule } from '@angular/material/card';
-import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
-import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+
+import { BlogItem } from './types/blogItem';
+import { BlogItemComponent } from './components/blogItem/blogItem.component';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+
+registerLocaleData(localeDeCh, 'de-CH');
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,
-    FormsModule,
     MatCardModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatListModule,
+    BlogItemComponent,
+    MatProgressSpinner,
+    MatToolbar,
+    MatIcon,
+    MatIconButton,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  selectedAnimal: string | null = null;
+  URL = '/api/entries';
+  queryResult = [];
+  blogItems: BlogItem[] = [];
+  isLoading = true;
 
-  animals = [
-    { name: 'Cat', type: 'mammal' },
-    { name: 'Parrot', type: 'bird' },
-    { name: 'Frog', type: 'amphibian' },
-    { name: 'Shark', type: 'fish' },
-  ];
-
-  clearSelection() {
-    this.selectedAnimal = null;
-  }
-
-  getAnimalColor(type: string): string {
-    switch (type) {
-      case 'mammal':
-        return 'brown';
-      case 'bird':
-        return 'green';
-      case 'amphibian':
-        return 'purple';
-      case 'fish':
-        return 'blue';
-      default:
-        return 'black';
-    }
+  constructor() {
+    fetch(this.URL)
+      .then((res) =>
+        res.json().then((res) => {
+          this.isLoading = false;
+          console.log(res);
+          this.queryResult = res;
+          this.blogItems = res.data as BlogItem[];
+          this.blogItems.map((item: BlogItem) => {
+            item.headerImageUrl = `https://picsum.photos/200/100?random=${Math.random()}`;
+            item.authorAvatar = `https://picsum.photos/200?random=${Math.random()}`;
+          });
+          console.log(this.blogItems);
+        }),
+      )
+      .catch((err) => console.error(err));
   }
 }
