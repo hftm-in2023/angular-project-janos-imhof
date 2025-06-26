@@ -1,54 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { registerLocaleData } from '@angular/common';
 import localeDeCh from '@angular/common/locales/de-CH';
 
 //material
 import { MatCardModule } from '@angular/material/card';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
-
-import { BlogItem } from './types/blogItem';
-import { BlogItemComponent } from './components/blogItem/blogItem.component';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorService } from './services/error.service';
 
 registerLocaleData(localeDeCh, 'de-CH');
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    MatCardModule,
-    BlogItemComponent,
-    MatProgressSpinner,
-    MatToolbar,
-    MatIcon,
-    MatIconButton,
-  ],
+  imports: [MatCardModule, MatToolbar, MatIcon, MatIconButton, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  URL = '/api/entries';
-  queryResult = [];
-  blogItems: BlogItem[] = [];
-  isLoading = true;
+  private snackBar = inject(MatSnackBar);
+  private errorService = inject(ErrorService);
 
   constructor() {
-    fetch(this.URL)
-      .then((res) =>
-        res.json().then((res) => {
-          this.isLoading = false;
-          console.log(res);
-          this.queryResult = res;
-          this.blogItems = res.data as BlogItem[];
-          this.blogItems.map((item: BlogItem) => {
-            item.headerImageUrl = `https://picsum.photos/200/100?random=${Math.random()}`;
-            item.authorAvatar = `https://picsum.photos/200?random=${Math.random()}`;
-          });
-          console.log(this.blogItems);
-        }),
-      )
-      .catch((err) => console.error(err));
+    this.errorService.error$.subscribe((message) => {
+      this.snackBar.open(message, 'Dismiss', {
+        duration: 4000,
+        panelClass: ['mat-warn'],
+      });
+    });
   }
 }
