@@ -1,3 +1,5 @@
+import { BlogComment } from './blogComment';
+
 export interface BlogItem {
   id: number;
   title: string;
@@ -5,7 +7,7 @@ export interface BlogItem {
   updatedAt: Date;
   author: string;
   authorAvatar: string;
-  comments: number;
+  comments: number | BlogComment[];
   contentPreview: string;
   headerImageUrl: string;
   likedByMe: boolean;
