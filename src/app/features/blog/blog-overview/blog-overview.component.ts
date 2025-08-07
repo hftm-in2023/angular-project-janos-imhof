@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BlogItemComponent } from '../../../components/blogItem/blogItem.component';
 import { BlogItem } from '../../../types/blogItem';
+import { blogItemArraySchema } from '../../../schemas/blogItemSchema';
 
 @Component({
   standalone: true,
@@ -15,6 +16,8 @@ export class BlogOverviewComponent implements OnInit {
   blogItems: BlogItem[] = [];
 
   ngOnInit() {
-    this.blogItems = this.route.snapshot.data['overviewData'];
+    this.blogItems = blogItemArraySchema.parse(
+      this.route.snapshot.data['overviewData'],
+    );
   }
 }

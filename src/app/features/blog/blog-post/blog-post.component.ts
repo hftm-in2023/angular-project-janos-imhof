@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { BlogItem } from '../../../types/blogItem';
 import { MatIcon } from '@angular/material/icon';
+import { blogItemSchema } from '../../../schemas/blogItemSchema';
 
 @Component({
   standalone: true,
@@ -15,6 +16,6 @@ export class BlogPostComponent implements OnInit {
   blogPost: BlogItem | undefined;
 
   ngOnInit() {
-    this.blogPost = this.route.snapshot.data['blogData'];
+    this.blogPost = blogItemSchema.parse(this.route.snapshot.data['blogData']);
   }
 }
