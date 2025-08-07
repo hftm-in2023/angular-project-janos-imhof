@@ -1,13 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { BlogItem } from '../../../types/blogItem';
 import { MatIcon } from '@angular/material/icon';
 
 @Component({
   standalone: true,
   selector: 'app-blog-post',
-  imports: [CommonModule, RouterLink, MatIcon],
+  imports: [CommonModule, RouterLink, MatIcon, NgOptimizedImage],
   templateUrl: './blog-post.component.html',
 })
 export class BlogPostComponent implements OnInit {

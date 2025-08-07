@@ -9,6 +9,7 @@ export interface BlogItem {
   authorAvatar: string;
   comments: number | BlogComment[];
   contentPreview: string;
+  content: string;
   headerImageUrl: string;
   likedByMe: boolean;
   likes: number;
