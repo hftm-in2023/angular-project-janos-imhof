@@ -1,22 +1,21 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { BlogItem } from '../../../types/blogItem';
+import { MatIcon } from '@angular/material/icon';
+import { blogItemSchema } from '../../../schemas/blogItemSchema';
 
 @Component({
   standalone: true,
   selector: 'app-blog-post',
-  imports: [CommonModule],
-  template: `
-    <h2>Blog Post</h2>
-    <pre>{{ blogPost | json }}</pre>
-  `,
+  imports: [CommonModule, RouterLink, MatIcon, NgOptimizedImage],
+  templateUrl: './blog-post.component.html',
 })
 export class BlogPostComponent implements OnInit {
   private route = inject(ActivatedRoute);
   blogPost: BlogItem | undefined;
 
   ngOnInit() {
-    this.blogPost = this.route.snapshot.data['blogData'];
+    this.blogPost = blogItemSchema.parse(this.route.snapshot.data['blogData']);
   }
 }

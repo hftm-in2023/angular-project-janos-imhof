@@ -1,0 +1,30 @@
+@if (blogPost) {
+  <ng-container>
+    <a [routerLink]="['/overview']">
+      <h3 class="d-flex align-items-center pt-10 pl-10">
+        <mat-icon>arrow_back_ios</mat-icon> Back
+      </h3>
+    </a>
+    <div class="p-10">
+      {{ blogPost | json }}
+      <h1>{{ blogPost.title }}</h1>
+      <p>Author: {{ blogPost.author }}</p>
+      <p>Created at: {{ blogPost.createdAt }}</p>
+      <p>Updated at: {{ blogPost.updatedAt }}</p>
+      <p>Likes: {{ blogPost.likes }}</p>
+      <img
+        ngSrc="{{ blogPost.authorAvatar }}"
+        width="100"
+        height="100"
+        alt="author avatar"
+      />
+      <img
+        ngSrc="{{ blogPost.headerImageUrl }}"
+        width="100"
+        height="100"
+        alt="hedaer image"
+      />
+      <div>{{ blogPost.content }}</div>
+    </div>
+  </ng-container>
+}
